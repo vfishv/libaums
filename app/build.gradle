@@ -28,8 +28,8 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'junit:junit:4.12'
-    api 'androidx.appcompat:appcompat:1.0.0-beta01'
-    api 'com.google.android.material:material:1.0.0-beta01'
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'com.google.android.material:material:1.0.0'
     api project(':libaums')
     api project(':httpserver')
     api project(':storageprovider')
