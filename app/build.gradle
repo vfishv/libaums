@@ -2,7 +2,18 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 34
+    compileSdk 34
+
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
 
     defaultConfig {
         applicationId "com.github.mjdev.usbfileman"
@@ -27,6 +38,9 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+
     implementation 'junit:junit:4.13.2'
     api 'androidx.appcompat:appcompat:1.6.1'
     api 'com.google.android.material:material:1.11.0'

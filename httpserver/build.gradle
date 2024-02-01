@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 
 project.archivesBaseName = 'libaums-httpserver'
-
+/*
 ext {
     PUBLISH_GROUP_ID = 'me.jahnen.libaums'
     PUBLISH_VERSION = '0.6.2'
@@ -15,10 +15,18 @@ apply from: "${rootProject.projectDir}/publish-module.gradle"
 configurations {
     javadocDeps
 }
-
+*/
 android {
-    compileSdkVersion 32
-    buildToolsVersion '30.0.3'
+    compileSdk 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
 
     defaultConfig {
         minSdkVersion 16
@@ -39,7 +47,7 @@ android {
 
 dependencies {
     api 'org.nanohttpd:nanohttpd:2.3.1'
-    javadocDeps 'org.nanohttpd:nanohttpd:2.3.1'
+//    javadocDeps 'org.nanohttpd:nanohttpd:2.3.1'
 
     api 'com.koushikdutta.async:androidasync:2.2.1'
 
