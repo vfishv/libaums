@@ -100,9 +100,9 @@ internal class FatLfnDirectoryEntry
             }
 
             if (actualEntry.isShortNameLowerCase)
-                name = name.toLowerCase()
+                name = name.lowercase()
             if (actualEntry.isShortNameExtLowerCase)
-                ext = ext.toLowerCase()
+                ext = ext.lowercase()
 
             if (ext.isNotEmpty())
                 name = "$name.$ext"
