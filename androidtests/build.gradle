@@ -15,7 +15,7 @@ android {
         testInstrumentationRunnerArguments
         minSdkVersion 15
         targetSdkVersion 33
-        compileSdk 33
+        compileSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments.package = 'me.jahnen.libaums.androidtests'
