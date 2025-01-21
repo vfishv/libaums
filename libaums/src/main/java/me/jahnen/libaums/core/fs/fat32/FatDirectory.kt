@@ -207,7 +207,7 @@ internal constructor(
      */
     private fun addEntry(lfnEntry: FatLfnDirectoryEntry, entry: FatDirectoryEntry) {
         entries!!.add(lfnEntry)
-        lfnMap[lfnEntry.name.toLowerCase(Locale.getDefault())] = lfnEntry
+        lfnMap[lfnEntry.name.lowercase(Locale.getDefault())] = lfnEntry
         shortNameMap[entry.shortName!!] = entry
     }
 
