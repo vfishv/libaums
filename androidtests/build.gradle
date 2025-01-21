@@ -4,11 +4,19 @@ apply plugin: 'kotlin-android'
 android {
     compileSdk 35
     buildToolsVersion "30.0.3"
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 
     defaultConfig {
         testInstrumentationRunnerArguments
         minSdkVersion 15
-        targetSdkVersion 32
+        targetSdkVersion 33
+        compileSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments.package = 'me.jahnen.libaums.androidtests'
