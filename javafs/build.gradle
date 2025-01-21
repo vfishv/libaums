@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdk 35
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -26,6 +25,7 @@ android {
         abortOnError false
     }
     namespace 'me.jahnen.libaums.javafs'
+    compileSdk 35
 }
 
 dependencies {

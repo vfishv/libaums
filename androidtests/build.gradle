@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdk 35
-    buildToolsVersion "30.0.3"
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
