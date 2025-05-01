@@ -19,14 +19,26 @@ package me.jahnen.libaums.core.driver.scsi
 
 import android.util.Log
 import me.jahnen.libaums.core.driver.BlockDeviceDriver
-import me.jahnen.libaums.core.driver.scsi.commands.*
+import me.jahnen.libaums.core.driver.scsi.commands.CommandBlockWrapper
 import me.jahnen.libaums.core.driver.scsi.commands.CommandBlockWrapper.Direction
-import me.jahnen.libaums.core.driver.scsi.commands.sense.*
+import me.jahnen.libaums.core.driver.scsi.commands.CommandStatusWrapper
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiInquiry
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiInquiryResponse
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiRead10
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiReadCapacity
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiReadCapacityResponse
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiTestUnitReady
+import me.jahnen.libaums.core.driver.scsi.commands.ScsiWrite10
+import me.jahnen.libaums.core.driver.scsi.commands.sense.InitRequired
+import me.jahnen.libaums.core.driver.scsi.commands.sense.NotReadyTryAgain
+import me.jahnen.libaums.core.driver.scsi.commands.sense.ScsiRequestSense
+import me.jahnen.libaums.core.driver.scsi.commands.sense.ScsiRequestSenseResponse
+import me.jahnen.libaums.core.driver.scsi.commands.sense.SenseException
 import me.jahnen.libaums.core.usb.PipeException
 import me.jahnen.libaums.core.usb.UsbCommunication
 import java.io.IOException
 import java.nio.ByteBuffer
-import java.util.*
+import java.util.Arrays
 
 /**
  * This class is responsible for handling mass storage devices which follow the
@@ -267,7 +279,8 @@ class ScsiBlockDevice(private val usbCommunication: UsbCommunication, private va
         }
 
         var transferLength = command.dCbwDataTransferLength
-        inBuffer.limit(inBuffer.position() + transferLength)
+        val initialPosition = inBuffer.position()
+        inBuffer.limit(initialPosition + transferLength)
 
         var read = 0
         if (transferLength > 0) {
@@ -277,13 +290,12 @@ class ScsiBlockDevice(private val usbCommunication: UsbCommunication, private va
                     read += usbCommunication.bulkInTransfer(inBuffer)
                     if (command.bCbwDynamicSize) {
                         transferLength = command.dynamicSizeFromPartialResponse(inBuffer)
-                        inBuffer.limit(inBuffer.position() + transferLength)
+                        inBuffer.limit(initialPosition + transferLength)
                     }
                 } while (read < transferLength)
 
                 if (read != transferLength) {
-                    throw IOException("Unexpected command size (" + read + ") on response to "
-                            + command)
+                    throw IOException("Unexpected command size ($read) on response to $command")
                 }
             } else {
                 written = 0
