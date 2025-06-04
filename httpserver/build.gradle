@@ -53,9 +53,9 @@ dependencies {
     api 'com.koushikdutta.async:androidasync:2.2.1'
 
     api fileTree(include: ['*.jar'], dir: 'libs')
-    api 'androidx.annotation:annotation:1.1.0'
+    api 'androidx.annotation:annotation:1.6.0'
     api project(':libaums')
-    api "androidx.core:core-ktx:1.1.0"
+    api "androidx.core:core-ktx:1.15.0"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
