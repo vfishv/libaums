@@ -16,7 +16,7 @@ configurations {
 }
 */
 android {
-    compileSdk 35
+    compileSdk 36
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -26,7 +26,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 33
-        compileSdk 35
+        compileSdk 36
     }
     buildTypes {
         release {
