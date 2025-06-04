@@ -10,3 +10,5 @@ add_library( usb-lib
 
 
 target_link_libraries(usb-lib log)
+target_link_options(usb-lib PRIVATE "-Wl,-z,max-page-size=16384")
+target_link_options(errno-lib PRIVATE "-Wl,-z,max-page-size=16384")

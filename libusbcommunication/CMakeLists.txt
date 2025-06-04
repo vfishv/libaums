@@ -22,10 +22,11 @@ add_library( libusb
              ${LIBUSB_SRC}/os/threads_posix.c
              ${LIBUSB_SRC}/os/linux_netlink.c)
 target_link_libraries(libusb log)
-
+target_link_options(libusb PRIVATE "-Wl,-z,max-page-size=16384")
 
 include_directories(${LIBUSB_INCLUDE})
 add_library( libusbcom
              SHARED
              src/c/usb.c )
 target_link_libraries(libusbcom libusb log)
+target_link_options(libusbcom PRIVATE "-Wl,-z,max-page-size=16384")
