@@ -54,7 +54,6 @@ dependencies {
 
     api fileTree(include: ['*.jar'], dir: 'libs')
     api 'androidx.annotation:annotation:1.1.0'
-    api 'androidx.core:core:1.2.0-rc01'
     api project(':libaums')
     api "androidx.core:core-ktx:1.1.0"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
