@@ -43,7 +43,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 33
+        //targetSdkVersion 33
         compileSdk 36
 
         externalNativeBuild {
