@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 36
+    compileSdkVersion 36
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
@@ -15,7 +15,7 @@ android {
         testInstrumentationRunnerArguments
         minSdkVersion 15
         //targetSdkVersion 33
-        compileSdk 36
+        compileSdkVersion 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments.package = 'me.jahnen.libaums.androidtests'
