@@ -280,14 +280,19 @@ public class UsbDocumentProvider extends DocumentsProvider {
         Context context = getContext();
         assert context != null;
 
-        context.registerReceiver(new BroadcastReceiver() {
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
                 UsbDevice device = intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
                 if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
                     discoverDevice(device);
                 }
             }
-        }, new IntentFilter(ACTION_USB_PERMISSION));
+        };
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.registerReceiver(broadcastReceiver, new IntentFilter(ACTION_USB_PERMISSION), Context.RECEIVER_EXPORTED);
+        } else {
+            context.registerReceiver(broadcastReceiver, new IntentFilter(ACTION_USB_PERMISSION));
+        }
 
         context.registerReceiver(new BroadcastReceiver() {
             @Override

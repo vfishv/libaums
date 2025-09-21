@@ -551,7 +551,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         val filter = IntentFilter(ACTION_USB_PERMISSION)
         filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED)
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED)
-        registerReceiver(usbReceiver, filter)
+        registerReceiver(usbReceiver, filter, Context.RECEIVER_EXPORTED)
         discoverDevice()
     }
 
