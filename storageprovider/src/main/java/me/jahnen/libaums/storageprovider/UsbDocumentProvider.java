@@ -288,10 +288,11 @@ public class UsbDocumentProvider extends DocumentsProvider {
                 }
             }
         };
+        IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.registerReceiver(broadcastReceiver, new IntentFilter(ACTION_USB_PERMISSION), Context.RECEIVER_EXPORTED);
+            context.registerReceiver(broadcastReceiver, filter, Context.RECEIVER_EXPORTED);
         } else {
-            context.registerReceiver(broadcastReceiver, new IntentFilter(ACTION_USB_PERMISSION));
+            context.registerReceiver(broadcastReceiver, filter);
         }
 
         context.registerReceiver(new BroadcastReceiver() {
